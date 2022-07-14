@@ -1,0 +1,28 @@
+type Stage {
+  id: ID!
+  name: String!
+}
+
+input NewStage {
+  id: ID!
+  name: String!
+}
+
+input UpdateStage {
+  id: ID!
+  name: String
+}
+
+type Query {
+  stages: [Stage!]!
+  stage(id: ID!): Stage
+  searchStage(name: String!): [Stage]
+  searchStageByAppId(appId: String!): [Stage]
+  searchStageByEventId(eventId: String!): Stage
+}
+
+type Mutation {
+  createStage(input: NewStage): Stage!
+  updateStage(input: UpdateStage): Stage
+  deleteStage(id: ID!): Stage
+}

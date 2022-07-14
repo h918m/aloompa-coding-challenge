@@ -1,0 +1,52 @@
+type Event {
+  id: ID!
+  appId: ID!
+  stageId: ID!
+  name: String!
+  description: String!
+  image: String!
+  startsAt: Int!
+  endsAt: Int!
+}
+
+input NewEvent {
+  id: ID!
+  appId: ID
+  stageId: ID
+  name: String
+  description: String
+  image: String
+  startsAt: Int
+  endsAt: Int
+}
+
+input UpdateEvent {
+  id: ID!
+  appId: ID
+  stageId: ID
+  name: String
+  description: String
+  image: String
+  startsAt: Int
+  endsAt: Int
+}
+
+input FromAndEnd {
+  from: Int
+  to: Int
+}
+
+type Query {
+  events: [Event!]!
+  event(id: ID!): Event
+  searchEvent(name: String!): [Event]
+  searchEventByAppId(appId: String!): [Event]
+  searchEventByStageId(stageId: String!): [Event]
+  searchEventBetween(dates: FromAndEnd!): [Event]
+}
+
+type Mutation {
+  createEvent(input: NewEvent): Event!
+  updateEvent(input: UpdateEvent): Event
+  deleteEvent(id: ID!): Event
+}
